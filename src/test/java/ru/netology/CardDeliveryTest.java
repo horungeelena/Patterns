@@ -8,6 +8,7 @@ import org.openqa.selenium.Keys;
 
 import java.time.Duration;
 
+
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.$;
@@ -19,11 +20,11 @@ public class CardDeliveryTest {
     void shouldDeliveryByCardForDifferentDate() {
         open("http://localhost:9999");
         SelenideElement form = $("form");
-        $("[data-test-id=city] input").setValue(DataGenerator.Registration.generateByInfo().getCity());
+        $("[data-test-id=city] input").setValue(DataGenerator.Registration.generateByCustomer("ru").getCity());
         $("[data-test-id=date] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
         $("[data-test-id=date] input").setValue(DataGenerator.Registration.forwardDate(4));
-        $("[data-test-id=name] input").setValue(DataGenerator.Registration.generateByInfo().getFullName());
-        $("[data-test-id=phone] input").setValue(DataGenerator.Registration.generateByInfo().getPhoneNumber());
+        $("[data-test-id=name] input").setValue(DataGenerator.Registration.generateByCustomer("ru").getFullName());
+        $("[data-test-id=phone] input").setValue(DataGenerator.Registration.generateByCustomer("ru").getPhoneNumber());
         $("[data-test-id=agreement]").click();
         $("button.button").click();
         $(withText("Успешно")).shouldNotBe(Condition.visible);

@@ -1,5 +1,7 @@
 package ru.netology;
 
+import com.github.javafaker.Faker;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
@@ -10,12 +12,12 @@ public class DataGenerator {
     public static class Registration {
         private Registration() {}
 
-        public static RegistrationByCustomerInfo generateByInfo() {
+        public static RegistrationByCustomerInfo generateByCustomer(String locale) {
             Faker faker = new Faker (new Locale("ru"));
             return new RegistrationByCustomerInfo(
-                    faker.city().city(),
+                    faker.address().city(),
                     faker.name().fullName(),
-                    faker.phone().phoneNumber());
+                    faker.phoneNumber().phoneNumber());
         }
 
         public static String forwardDate(int plusDays) {
