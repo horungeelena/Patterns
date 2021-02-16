@@ -1,7 +1,6 @@
 package ru.netology;
 
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.SelenideElement;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
 
@@ -19,7 +18,6 @@ public class CardDeliveryTest {
     @Test
     void shouldDeliveryByCardForDifferentDate() {
         open("http://localhost:9999");
-        SelenideElement form = $("form");
         $("[data-test-id=city] input").setValue(DataGenerator.Registration.generateByCustomer("ru").getCity());
         $("[data-test-id=date] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
         $("[data-test-id=date] input").setValue(DataGenerator.Registration.forwardDate(4));
