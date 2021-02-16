@@ -17,7 +17,9 @@ public class DataGenerator {
             return new RegistrationByCustomerInfo(
                     faker.address().city(),
                     faker.name().fullName(),
-                    faker.phoneNumber().phoneNumber());
+                    faker.phoneNumber().phoneNumber(),
+                    LocalDate.now().plusDays(4).format(DateTimeFormatter.ofPattern("dd.MM.yyyy")),
+                    LocalDate.now().plusDays(6).format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
         }
 
         public static String forwardDate(int plusDays) {
