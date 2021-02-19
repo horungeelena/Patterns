@@ -34,11 +34,11 @@ public class CardDeliveryTest {
         $("[data-test-id=date] input").setValue(DataGenerator.Registration.forwardDate(6));
         $(withText("Запланировать")).click();
         $("[data-test-id='replan-notification'] .notification__title")
-                .shouldHave(text("Необходимо подтверждение")).click();
+                .shouldBe(text("Необходимо подтверждение"));
                 //.shouldBe(Condition.visible,Duration.ofMillis(15000));
         $("[data-test-id='replan-notification'] .notification__content")
                 .shouldHave(text("У вас уже запланирована встреча на другую дату. Перепланировать?"));
-        $("button.button").shouldBe(text("Запланировать")).click();
+        $("button.button").click();
         //$(withText("Перепланировать")).click();
         $("[data-test-id='success-notification'] .notification__title")
                 .shouldHave(text("Успешно!"));
