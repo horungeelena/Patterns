@@ -4,7 +4,10 @@ import com.codeborne.selenide.Condition;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
 
+import java.time.Duration;
+
 import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
@@ -22,26 +25,26 @@ public class CardDeliveryTest {
         $("[data-test-id=agreement]").click();
         $("button.button").click();
         $("[data-test-id='success-notification'] .notification__title")
-                .shouldHave(exactText("Успешно!"))
-                .shouldBe(Condition.visible);
+                .shouldHave(text("Успешно!"));
+                //.shouldBe(Condition.visible,Duration.ofMillis(15000));
         $("[data-test-id='success-notification'] .notification__content")
                 .shouldHave(exactText("Встреча успешно запланирована на " + DataGenerator.Registration.forwardDate(4)))
-                .shouldBe(Condition.visible);
+                .shouldBe(Condition.visible,Duration.ofMillis(15000));
         $("[data-test-id=date] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
         $("[data-test-id=date] input").setValue(DataGenerator.Registration.forwardDate(6));
         $(withText("Запланировать")).click();
         $("[data-test-id='replan-notification'] .notification__title")
-                .shouldHave(exactText("Необходимо подтверждение"))
-                .shouldBe(Condition.visible);
+                .shouldHave(text("Необходимо подтверждение")).click();
+                //.shouldBe(Condition.visible,Duration.ofMillis(15000));
         $("[data-test-id='replan-notification'] .notification__content")
-                .shouldHave(exactText("У вас уже запланирована встреча на другую дату. Перепланировать?"))
-                .shouldBe(Condition.visible);
-        $("button.button").shouldBe(exactText("Перепланировать"));
+                .shouldHave(text("У вас уже запланирована встреча на другую дату. Перепланировать?"));
+        $("button.button").shouldBe(text("Запланировать")).click();
+        //$(withText("Перепланировать")).click();
         $("[data-test-id='success-notification'] .notification__title")
-                .shouldHave(exactText("Успешно!"))
-                .shouldBe(Condition.visible);
+                .shouldHave(text("Успешно!"));
+                //.shouldBe(Condition.visible, Duration.ofMillis(15000));
         $("[data-test-id='success-notification'] .notification__content")
-                .shouldHave(exactText("Встреча успешно запланирована на " + DataGenerator.Registration.forwardDate(6)))
-                .shouldBe(Condition.visible);
+                .shouldHave(text("Встреча успешно запланирована на " + DataGenerator.Registration.forwardDate(6)))
+                .shouldBe(Condition.visible,Duration.ofMillis(15000));
     }
 }
