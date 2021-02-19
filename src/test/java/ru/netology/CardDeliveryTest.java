@@ -26,7 +26,6 @@ public class CardDeliveryTest {
         $("button.button").click();
         $("[data-test-id='success-notification'] .notification__title")
                 .shouldHave(text("Успешно!"));
-                //.shouldBe(Condition.visible,Duration.ofMillis(15000));
         $("[data-test-id='success-notification'] .notification__content")
                 .shouldHave(exactText("Встреча успешно запланирована на " + DataGenerator.Registration.forwardDate(4)))
                 .shouldBe(Condition.visible,Duration.ofMillis(15000));
@@ -35,14 +34,11 @@ public class CardDeliveryTest {
         $(withText("Запланировать")).click();
         $("[data-test-id='replan-notification'] .notification__title")
                 .shouldBe(text("Необходимо подтверждение"));
-                //.shouldBe(Condition.visible,Duration.ofMillis(15000));
         $("[data-test-id='replan-notification'] .notification__content")
                 .shouldHave(text("У вас уже запланирована встреча на другую дату. Перепланировать?"));
         $("button.button").click();
-        //$(withText("Перепланировать")).click();
         $("[data-test-id='success-notification'] .notification__title")
                 .shouldHave(text("Успешно!"));
-                //.shouldBe(Condition.visible, Duration.ofMillis(15000));
         $("[data-test-id='success-notification'] .notification__content")
                 .shouldHave(text("Встреча успешно запланирована на " + DataGenerator.Registration.forwardDate(6)))
                 .shouldBe(Condition.visible,Duration.ofMillis(15000));
