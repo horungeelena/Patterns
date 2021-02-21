@@ -1,9 +1,11 @@
-package ru.netology;
+package ru.netology.test;
 
 import com.codeborne.selenide.Condition;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
+import ru.netology.data.DataGenerator;
+import ru.netology.data.RegistrationByCustomerInfo;
 
 import java.time.Duration;
 
